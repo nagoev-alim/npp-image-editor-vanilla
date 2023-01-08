@@ -1,0 +1,240 @@
+@import "assets/scss/config/fonts";
+@import "assets/scss/config/reset";
+@import "assets/scss/config/vars";
+@import "assets/scss/config/utility";
+@import "assets/scss/modules/typography";
+@import "assets/scss/modules/fields";
+@import "assets/scss/modules/buttons";
+@import "assets/scss/modules/toast";
+@import "assets/scss/config/global";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.app-author {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.app-container {
+  --gap: 15px;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.editor {
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 25px 35px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: calc(10px + (20 - 10) * ((100vw - 300px) / (var(--maximumViewportWidth) - 300)));
+  background-color: #fff;
+
+  .title {
+    text-align: center;
+  }
+
+  .main {
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .filter {
+    display: grid;
+    gap: 10px;
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--gap);
+
+    p:not(.value) {
+      font-weight: var(--fw-600);
+    }
+  }
+
+  .options {
+    display: grid;
+    gap: var(--gap);
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .slider {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: space-between;
+    gap: var(--gap);
+    margin-top: 10px;
+
+    input {
+      all: revert;
+      grid-column: 1/-1;
+      border: 0;
+      width: 100%;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bcs-grey-2);
+      outline: none;
+      opacity: 0.7;
+      transition: opacity .2s;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        background-color: var(--bcp-grey);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      &::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        background-color: var(--bcp-grey);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .rotate {
+    display: grid;
+    gap: var(--gap);
+    margin-top: auto;
+
+    .options {
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    [data-rotate="horizontal"] {
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+
+    [data-rotate="vertical"] {
+      svg {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--gap);
+
+    @media (min-width: 768px) {
+      align-items: flex-start;
+      min-height: 335px;
+      grid-template-columns: 280px 1fr;
+    }
+  }
+
+  .preview {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background-color: var(--bcs-grey-3);
+    cursor: pointer;
+    height: 100%;
+    min-height: 335px;
+    grid-row: 1/2;
+
+    @media (min-width: 576px) {
+      grid-row: unset;
+    }
+
+    div {
+      justify-items: center;
+      display: grid;
+      gap: 10px;
+    }
+
+    svg {
+      pointer-events: none;
+      width: calc(30px + (60 - 30) * ((100vw - 300px) / (var(--maximumViewportWidth) - 300)));
+      height: calc(30px + (60 - 30) * ((100vw - 300px) / (var(--maximumViewportWidth) - 300)));
+    }
+
+    img {
+      max-width: 490px;
+      max-height: 335px;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .controls {
+    @media (min-width: 576px) {
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: 2fr 1fr 2fr 2fr;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: 180px 1fr 180px 180px;
+    }
+
+    button {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: var(--gap);
+
+        @media (min-width: 576px) {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  button {
+    &.active {
+      background-color: var(--bcp-grey);
+      color: #fff;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .disabled {
+    .grid,
+    .controls button:not([data-choose]) {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+
+
+
